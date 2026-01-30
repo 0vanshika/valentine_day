@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> My shona Garv 💖</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background: linear-gradient(135deg,#ffd1e8,#ffeaf4);
+    font-family:'Comic Sans MS', cursive;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+.card{
+    background:white;
+    padding:35px;
+    border-radius:40px;
+    text-align:center;
+    max-width:420px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.3);
+    z-index:5;
+    animation:pop .6s;
+}
+h1{ color:#ff4d88; }
+p{ font-size:18px; color:#555; line-height:1.6; }
+
+button{
+    padding:14px 28px;
+    border:none;
+    border-radius:35px;
+    background:#ff4d88;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    margin:10px;
+}
+
+video{ width:100%; border-radius:25px; margin-top:12px; }
+
+.emoji-bg{
+    position:absolute;
+    font-size:30px;
+    animation:float 6s linear infinite;
+    pointer-events:none;
+}
+
+.teddy{
+    position:absolute;
+    font-size:50px;
+    animation:bounce 3s infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh) scale(0.5);opacity:1;}
+    100%{transform:translateY(-10vh) scale(1.2);opacity:0;}
+}
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+}
+@keyframes pop{
+    from{transform:scale(0);}
+    to{transform:scale(1);}
+}
+
+/* HEART IMAGE RAIN */
+.heart-img{
+    position:absolute;
+    width:120px;
+    height:120px;
+    background-size:cover;
+    background-position:center;
+    clip-path: polygon(
+        50% 15%,
+        85% 0%,
+        100% 30%,
+        50% 100%,
+        0% 30%,
+        15% 0%
+    );
+    animation:fall 6s linear infinite;
+}
+@keyframes fall{
+    0%{top:-150px;opacity:1;}
+    100%{top:110vh;opacity:0;}
+}
+</style>
+</head>
+
+<body onclick="playMusic()">
+
+<audio id="music" loop src="love.mp3"></audio>
+<audio id="v1" src="voice1.mp3"></audio>
+<audio id="v2" src="voice2.mp3"></audio>
+<audio id="v3" src="voice3.mp3"></audio>
+
+<div class="teddy" style="left:5%;bottom:5%">🧸</div>
+<div class="teddy" style="right:5%;bottom:5%">🧸</div>
+
+<div class="card" id="page"></div>
+
+<script>
+const page=document.getElementById("page");
+const music=document.getElementById("music");
+let step=0;
+
+const imgs=["img1.jpg","img2.jpg","img3.jpg","img4.jpg","img5.jpg"];
+
+function playMusic(){ music.play(); }
+
+function emojis(){
+    const e=document.createElement("div");
+    e.className="emoji-bg";
+    e.innerHTML=["💖","💞","🧸","🎀","✨","🌹","💝"][Math.floor(Math.random()*7)];
+    e.style.left=Math.random()*100+"vw";
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),6000);
+}
+setInterval(emojis,250);
+
+const pages=[
+()=>page.innerHTML=`<h1>🌹 Rose Day 🌹</h1>
+<p> my <b>cupiecake Garv 🧁</b><br>
+Rose Day pe sirf phool nahi,
+Apna dil de rahi hoon main aaj tumhe.
+Jaise is rose ki khushboo hai pyaari,
+Waise hi meri zindagi mehka di hai tumne.
+
+Tum saath ho toh sab perfect lagta hai,
+Har simple moment bhi special ban jaata hai.
+Strong ho tum stem ki tarah,
+Aur soft ho petals jaise, dil ki har ek jagah.
+
+Yeh rose sirf aaj ke liye nahi,
+Yeh waada hai har kal ke liye.
+Tum mere ho, aur bas itna kaafi hai,
+Happy Rose Day, meri har khushi ke liye 🌹❤️🌹💞<br>
+A rose for my bby 💓</p>
+<video controls src="rose.mp4"></video>
+<button onclick="next()">Next 💌</button>`,
+
+()=>{v1.play();
+page.innerHTML=`<h1>💌 Propose Day 💌</h1>
+<p>My cute bandar 🐒💖<br>
+Propose Day pe kuch special kehna hai,
+Dil ki baat aaj bina dare kehna hai.
+Tum jab saath hote ho, duniya ruk si jaati hai,
+Har problem chhoti, har khushi badh jaati hai.
+
+Main promises nahi, sirf saath maangti hoon,
+Har ups and downs mein tumhara haath maangti hoon.
+Zyada kuch nahi, bas itna saath chahiye,
+Har kal, har pal, sirf tum chahiye.
+
+Toh aaj pooch rahi hoon dil se, sachche pyaar ke saath—
+Kya zindagi bhar chaloge mere haath mein haath? ❤️✨
+Happy Propose Day, meri duniya 💍🧸💞<br>
+Forever mine? 🥺👉👈</p>
+<video controls src="propose.mp4"></video>
+<button onclick="next()">Next 🍫</button>`},
+
+()=>page.innerHTML=`<h1>🍫 Chocolate Day 🍫</h1>
+<p>Sweeter than chocolate 😘🍫<br>
+Chocolate Day pe sirf chocolate nahi,
+Apni saari sweetness de rahi hoon main tumhe.
+Jaise chocolate bina bole khush kar jaati hai,
+Waise hi tumhari presence meri har tension mita jaati hai.
+
+Thode dark ho, thode soft se ho,
+Bilkul chocolate jaise perfect ho.
+Ek bite mein smile aa jaaye,
+Tumhari ek baat se mera din ban jaaye.
+
+Yeh chocolate ek chhota sa bahaana hai,
+Asal gift toh tumhara saath nibhaana hai.
+Aaj bhi, kal bhi, har din yahi kehna hai—
+Tum meri sabse pyaari aadat ho, aur rehna hai 💕🍫
+
+Happy Chocolate Day, meri meethi si khushi 😘 💓</p>
+<video controls src="chocolate.mp4"></video>
+<button onclick="next()">Next 🧸</button>`,
+
+()=>page.innerHTML=`<h1>🧸 Teddy Day 🧸</h1>
+<p>You = my teddy bear 🧸💞<br>
+Teddy Day pe ek teddy nahi,
+Apna saara pyaar bhej rahi hoon main tumhe.
+Jaise teddy gale lagte hi sukoon de jaata hai,
+Waise hi tumhara saath mujhe safe feel karaata hai.
+
+Soft sa care, warm si baatein,
+Tum ho toh cute ho jaati hain saari raatein.
+Jab tum door hote ho, teddy ko hug karti hoon,
+Aur mann hi mann tumhe hi feel karti hoon.
+
+Yeh teddy bas ek nishaani hai,
+Ki tum meri comfort, meri kahaani ho.
+Happy Teddy Day, mere sabse pyaare cuddle partner 🧸❤️ 😭💓</p>
+<video controls src="teddy.mp4"></video>
+<button onclick="next()">Next 🤞</button>`,
+
+()=>page.innerHTML=`<h1>🤞 Promise Day 🤞</h1>
+<p>I promise drama 😌😤<br>
+Love 💖<br>
+And forever 
+Promise Day pe sirf words nahi,
+Dil se nikle kuch waade karna chahti hoon.
+Har muskurahat mein, har mushkil mein,
+Tumhara saath banna chahti hoon.
+
+Promise hai tumhe hamesha samajhne ka,
+Bina bole bhi tumhari baat padhne ka.
+Kabhi kamzor pad jao toh haath pakadne ka,
+Aur har khushi tumse pehle baantne ka.
+
+Perfect hone ka waada nahi karti,
+Par har situation mein tumhari rehne ka vaada karti hoon.
+Aaj, kal, aur har aane wale din ke liye—
+Sirf tumhara saath chunti hoon ❤️
+
+Happy Promise Day, mere hamesha wale 🤍✨🫶</p>
+<video controls src="promise.mp4"></video>
+<button onclick="next()">Next 😘</button>`,
+
+()=>page.innerHTML=`<h1>😘 Kiss Day 😘</h1>
+<p>Kisses loading 💋💋💋<br>
+Kiss Day pe sirf ek kiss nahi,
+Woh feeling hai jo tum paas hote hi aa jaati hai.
+Woh silent sa moment, jab duniya fade ho jaati hai,
+Aur sirf tum aur main reh jaate hain.
+
+Aaj nahi, har din yahi ehsaas chahiye,
+Tumhari warmth, tumhari care, tumhari si smile chahiye.
+Happy Kiss Day, mere dil ke sabse kareeb 💖✨y 💞</p>
+<video controls src="kiss.mp4"></video>
+<button onclick="valentine()">IT's time for official declaration 💝</button>`
+];
+
+function next(){ step++; pages[step](); }
+
+function valentine(){
+page.innerHTML=`<h1>💝 Valentine’s Day 💝</h1>
+<p>My cupiecake 🧁<br>My bby 💓<br>My bubu 🧸<br>agar main keh doon ki is Valentine’s Day meri saari smiles tumhare naam, meri saari chocolates tumhare liye, aur mera saara pyaar sirf tumhara hai…<br>
+    <br>toh kya tum muskura ke “haan” nahi kahoge? Agar main apna haath thoda sa aage badha doon, bina kisi pressure ke, bas pyaar ke saath, toh kya tum usse thaam loge?<br>
+    <br>Shona, mera Valentine banna koi zimmedaari nahi, bas ek choice hai—aur main chahti hoon ki tum mujhe chuno, waise hi jaise main tumhe chunti hoon… har baar 🤍🌹<br>
+    <br><br>
+so , Will you be my Valentine forever shona? 🌹</p>
+<button onclick="yes()">YES 😍</button>
+<button onclick="no()">NO 😐</button>`;
+}
+
+function no(){
+v2.play();
+page.innerHTML=`<h1>😤 EXCUSE ME ???????? 😤</h1>
+<p>Wow. Just wow. 😠<br><br>
+            My <b>cupiecake</b> really said NO??? 🥺💔<br>
+            My heart is officially broken 💥😭<br><br>
+            Look at what you did, bandar 🐒😤<br>
+            I’m ANGY now 😡💢 😡💔<br>
+its your last chance so use properly. 😤</p>
+
+<div class="buttons">
+            <button class="yes" onclick="forgive()">stilll noooooo!!!! 🥺💖</button>
+        </div>
+<button onclick="valentine()">SORRYYYYYY JAANUUUUUUUUU 🥺</button>`;
+}
+
+function yes(){
+v3.play();
+page.innerHTML=`<h1>🎁 YAYYYYYYY!!!!!!!🎁</h1>
+<p>I KNEW IT 😭💞<br><br>
+            My Garv, my bby, my bubu 🧸💋<br>
+            You’re stuck with me forever now 😌💓<br><br>
+            Happy Valentine’s 💝🌹 💖🧸<br>
+Tap to open your surprise 💝</p>
+<button onclick="gift()">OPEN 🎁</button>`;
+}
+
+function gift(){
+page.style.display="none";
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart-img";
+    h.style.left=Math.random()*100+"vw";
+    h.style.backgroundImage=`url(${imgs[Math.floor(Math.random()*imgs.length)]})`;
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+},150);
+}
+pages[0]();
+</script>
+
+</body>
+</html>
